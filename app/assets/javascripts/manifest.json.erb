@@ -1,0 +1,39 @@
+Default
+<% icon_sizes = Rails.configuration.serviceworker.icon_sizes %>
+{
+ "name": "Spotclone",
+ "short_name": "SpotClone - Music Play",
+ "start_url": "/",
+ "icons": [
+ <% icon_sizes.map { |s| "#{s}x#{s}" }.each.with_index do |dim, i| %>
+  {
+     "src": "<%= image_path "serviceworker-rails/heart-#{dim}.png" %>",
+     "sizes": "<%= dim %>",
+     "type": "image/png"
+  }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
+ <% end %>
+],
+ "theme_color": "#333333",
+ "background_color": "#222222",
+ "display": "fullscreen",
+ "orientation": "portrait"
+}
+<% icon_sizes = Rails.configuration.serviceworker.icon_sizes %>
+{
+ "name": "SpotClone",
+ "short_name": "SpotClone - Music Play",
+ "start_url": "/",
+ "icons": [
+ <% icon_sizes.map { |s| "#{s}x#{s}" }.each.with_index do |dim, i| %>
+  {
+     "src": "<%= image_path "serviceworker-rails/heart-#{dim}.png" %>",
+     "sizes": "<%= dim %>",
+     "type": "image/png"
+  }<%= i == (icon_sizes.length - 1) ? '' : ',' %>
+ <% end %>
+],
+ "theme_color": "#333333",
+ "background_color": "#222222",
+ "display": "fullscreen",
+ "orientation": "portrait"
+}

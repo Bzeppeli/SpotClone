@@ -3,6 +3,7 @@ import { Columns } from 'react-bulma-components';
 
 import SearchBar from './searchbar';
 import Categories from '../common/categories';
+import ResultsTabs from '../common/resultTabs/index';
 
 import SearchService from '../../services/search_service';
 import CategoriesService from '../../services/categories_service';
@@ -20,14 +21,22 @@ const Search = () => {
         setSongs(response.data['songs']);
     }
 
+    async function fetchSearch(query){
+        const response = await SearchService.index(query);
+        setAlbums(response.data['albums']);
+        setArtist(response.data['artists']);
+        setSongs(response.data['songs']);
+    }
+
  return (
    <Fragment>
 ​    <Columns>
         <Columns.Column desktop={{ size: 6, offset: 3 }} mobile={{ size: 12 }}>
-            <SearchBar/>
+            <SearchBar fetchSearch={fetchSearch}/>
         </Columns.Column>
     </Columns>
-    <Categories/>
+    <ResultsTabs albums={albums} artists={artists} songs={songs} />
+    <Categories fetchCategorySearch={fetchCategorySearch}/>
    </Fragment>
 );
 }
